@@ -1,0 +1,7 @@
+32.00fastapi==0.115.12
+uvicorn[standard]==0.34.3
+psycopg[binary]==3.2.9
+httpx==0.28.1
+pydantic==2.11.5
+python-dotenv==1.1.0
+sqlglot==26.25.3

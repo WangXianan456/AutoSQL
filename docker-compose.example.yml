@@ -1,0 +1,27 @@
+services:
+  autosql:
+    build: .
+    container_name: autosql
+    env_file:
+      - .env
+    ports:
+      - "127.0.0.1:8000:8000"
+    restart: unless-stopped
+
+  # Optional local PostgreSQL for development only.
+  # In production, point AUTOSQL_DATABASE_URL to your managed PostgreSQL.
+  postgres:
+    image: postgres:16
+    container_name: autosql-postgres
+    environment:
+      POSTGRES_USER: autosql
+      POSTGRES_PASSWORD: autosql
+      POSTGRES_DB: autosql
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - autosql_pg_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  autosql_pg_data:
